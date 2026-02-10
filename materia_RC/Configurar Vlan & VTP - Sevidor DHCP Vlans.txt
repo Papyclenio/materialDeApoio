@@ -1,0 +1,185 @@
+Switch>enable
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#no ip domain-lookup
+Switch(config)#hostname SWA-1
+SWA-1(config)#Banner motd #Configurar servidor Vlan#
+SWA-1(config)#enable secret C15c0
+SWA-1(config)#line console 0
+SWA-1(config-line)#password C15c0
+SWA-1(config-line)#login
+SWA-1(config-line)#exit
+SWA-1(config)#line vty 0 15
+SWA-1(config-line)#password C15c0
+SWA-1(config-line)#login
+SWA-1(config-line)#exit
+SWA-1(config)#service password-encryption
+SWA-1(config)#interface Vlan 1
+SWA-1(config-if)#ip address 192.168.1.254 255.255.255.0
+SWA-1(config-if)#no shutdown
+
+SWA-1(config-if)#
+
+SWA-1(config-if)#exit
+SWA-1(config)#Vlan 10
+SWA-1(config-vlan)#name TI
+SWA-1(config-vlan)#exit
+SWA-1(config)#Vlan 20
+SWA-1(config-vlan)#name ADM
+SWA-1(config-vlan)#exit
+SWA-1(config)#Vlan 30
+SWA-1(config-vlan)#name RH
+SWA-1(config-vlan)#exit
+SWA-1(config)#exit
+SWA-1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+SWA-1#show vlan brief
+
+SWA-1#conf t
+SWA-1(config)#interface f0/2
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 10
+SWA-1(config-if)#exit
+SWA-1(config)#interface f0/4
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 20
+SWA-1(config-if)#exit
+SWA-1(config)#interface f0/8
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 30
+SWA-1(config-if)#exit
+SWA-1(config)#exit
+SWA-1#
+
+SWA-1#show vlan brief
+
+SWA-1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+SWA-1(config)#interface f0/1
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 10
+SWA-1(config-if)#exit
+SWA-1(config)#interface f0/5
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 20
+SWA-1(config-if)#exit
+SWA-1(config)#interface f0/9
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 30
+SWA-1(config-if)#exit
+SWA-1(config)#exit
+SWA-1#
+
+SWA-1#show vlan brief
+
+SWA-1#conf t
+SWA-1(config)#vtp mode server
+Device mode already VTP SERVER.
+SWA-1(config)#vtp version 2
+SWA-1(config)#vtp domain teste
+Changing VTP domain name from NULL to teste
+SWA-1(config)#interface range f0/20 - 22
+SWA-1(config-if-range)#switchport mode trunk
+
+SWA-1(config-if-range)#
+
+SWA-1#conf t
+SWA-1(config)#do show vtp status
+SWA-1(config)#vtp password C15c0
+SWA-1(config)#exit
+
+SWA-1#conf t
+SWA-1(config)#interface f0/23
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 20
+SWA-1(config-if)#exit
+SWA-1(config)#interface f0/24
+SWA-1(config-if)#switchport mode access
+SWA-1(config-if)#switchport access Vlan 30
+SWA-1(config-if)#exit
+SWA-1(config)#
+
+
+Switch>enable
+Switch#conf t
+Switch(config)#no ip domain-lookup
+Switch(config)#hostname Cl-1
+Cl-1(config)#vtp mode client
+Setting device to VTP CLIENT mode.
+Cl-1(config)#vtp version 2
+Cannot modify version in VTP client mode
+Cl-1(config)#vtp domain teste
+Domain name already set to teste.
+Cl-1(config)#exit
+Cl-1#
+
+Cl-1#show vlan brief
+
+Cl-1#conf t
+Cl-1(config)#interface f0/1
+Cl-1(config-if)#switchport mode access
+Cl-1(config-if)#switchport access vlan 10
+Cl-1(config-if)#exit
+Cl-1(config)#exit
+Cl-1#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Cl-1#show vlan brief
+
+Cl-1>enable
+Cl-1#conf t
+Cl-1(config)#vtp password C15c0
+Cl-1(config)#exit
+
+
+Switch>enable
+Switch#conf t
+Switch(config)#no ip domain-lookup
+Switch(config)#hostname Cl-2
+Cl-2(config)#vtp mode client
+Setting device to VTP CLIENT mode.
+Cl-2(config)#vtp version 2
+Cannot modify version in VTP client mode
+Cl-2(config)#vtp domain teste
+Domain name already set to teste.
+Cl-2(config)#interface f0/5
+Cl-2(config-if)#switchport mode access
+Cl-2(config-if)#switchport access vlan 20
+Cl-2(config-if)#exit
+Cl-2(config)#exit
+Cl-2#
+
+Cl-2#show vlan brief
+
+Cl-2>enable
+Cl-2#conf t
+Cl-2(config)#vtp password C15c0
+Cl-2(config)#exit
+Cl-2#
+
+
+
+Switch>enable
+Switch#conf t
+Switch(config)#no ip domain-lookup
+Switch(config)#hostname Cl-3
+Cl-3(config)#vtp mode client
+Setting device to VTP CLIENT mode.
+Cl-3(config)#vtp version 2
+Cannot modify version in VTP client mode
+Cl-3(config)#vtp domain teste
+Domain name already set to teste.
+Cl-3(config)#interface f0/9
+Cl-3(config-if)#switchport mode access
+Cl-3(config-if)#switchport access vlan 30
+Cl-3(config-if)#exit
+Cl-3(config)#exit
+Cl-3#
+
+Cl-3#show vlan brief
+
+Cl-3>enable
+Cl-3#conf t
+Cl-3(config)#vtp password C15c0
+Cl-3(config)#exit

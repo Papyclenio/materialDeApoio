@@ -1,0 +1,44 @@
+enable
+disable
+Configure terminal
+show running-config
+enable password aluno (sem criptografia)
+enable secret aluno (criptografa a senha)
+no enable secret (tirar uma senha configurada)
+no enable password (tirar uma senha configurada)
+line console 0 (configura uma senha antes de entrar no modo enable ou acesso local)
+Password aluno
+login
+line vty 0 15 (configura o acesso remoto)
+Password aluno
+login
+no password (elimina a senha)
+no login (elimina o login)
+
+Configurar usuários e senhas na linha console
+Username Katia password aluna
+Username Conde password professor
+line console 0
+login local
+
+Caso queira configurar usuário e senhas na linha Vty é só fazer o mesmo. Mas como já foram configurado vamos fazer o seguinte:
+line vty 0 15
+login local
+
+Configurar as interfaces
+interface f0/1
+speed 100 (configura a velocidade da porta para 100)
+duplex full (como vai operar a comunicação)
+description (Porta f0/1)
+
+aplicando para todas as portas do switch
+interface range f0/1 - 24
+description
+duplex full
+speed 100
+
+show interface f0/1 (para ver a porta fastethernet)
+show interface status (mostra o estado das portas de forma resumida)
+show mac-address-table (mostra a table mac das portas do switch)
+
+wr erase (apaga as configurações do switch)

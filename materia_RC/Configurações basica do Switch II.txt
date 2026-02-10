@@ -1,0 +1,34 @@
+Switch>
+Switch>enable
+Switch#
+Switch#clock set 11:43 31 Feb 2022
+Switch#configure terminal
+Switch(config)#hostname Sw-l2
+Sw-l2(config)#
+Sw-l2(config)#service password-encryption 
+Sw-l2(config)#
+Sw-l2(config)#service timestamps log datetime msec
+Sw-l2(config)#
+Sw-l2(config)#no ip domain-lookup
+Sw-l2(config)#
+Sw-l2(config)#banner motd "Configuracao basica do Switch 2"
+Sw-l2(config)#
+Sw-l2(config)#enable secret C1sco
+Sw-l2(config)#
+Sw-l2(config)#username gael secret C1sco
+Sw-l2(config)#username helcias password C1sco
+Sw-l2(config)#username admin privilege 15 secret C1sco
+Sw-l2(config)#
+Sw-l2(config)#line console 0
+Sw-l2(config-line)#login local
+Sw-l2(config-line)#password C1sco
+Sw-l2(config-line)#
+Sw-l2(config-line)#logging synchronous 
+Sw-l2(config-line)#
+Sw-l2(config-line)#exec-timeout 5 30
+Sw-l2(config-line)#end
+Sw-l2#
+Sw-l2#copy running-config startup-config 
+Sw-l2#
+Sw-l2#show running-config 
+

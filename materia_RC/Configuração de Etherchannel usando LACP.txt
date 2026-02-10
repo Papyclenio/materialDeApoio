@@ -1,0 +1,97 @@
+---------------------S-1-------------------------
+S-1>enable
+S-1#configure terminal
+S-1(config)#interface range f0/1-3
+S-1(config-if-range)#channel-group 1 mode active
+S-1(config-if-range)#
+Creating a port-channel interface Port-channel 1
+
+S-1(config-if-range)#exit
+S-1(config)#interface port-channel 1
+S-1(config-if)#switchport mode trunk
+S-1(config-if)#exit
+S-1(config)#do show etherchannel
+--------------------------S-2-------------------------
+S-2>enable
+S-2#configure terminal
+S-2(config)#interface range f0/4-6
+S-2(config-if-range)#channel-group 1 mode passive
+S-2(config-if-range)#
+Creating a port-channel interface Port-channel 1
+S-2(config-if-range)#exit
+ 
+S-2(config)#interface port-channel 1
+S-2(config-if)#switchport mode trunk
+S-2(config-if)#exit
+S-2(config)#
+
+S-2(config)#interface range f0/1-3
+S-2(config-if-range)#channel-group 2 mode active
+S-2(config-if-range)#
+Creating a port-channel interface Port-channel 2
+
+S-2(config-if-range)#exit
+S-2(config)#interface port-channel 2
+S-2(config-if)#switchport mode trunk
+S-2(config-if)#exit
+S-2(config)#do show etherchannel
+--------------------------MLS-1-----------------------
+MLS-1>enable
+MLS-1#configure terminal
+MLS-1(config)#interface range g1/0/1-3
+MLS-1(config-if-range)#channel-group 2 mode passive
+MLS-1(config-if-range)#
+Creating a port-channel interface Port-channel 2
+
+MLS-1(config-if-range)#exit
+MLS-1(config)#interface port-channel 2
+MLS-1(config-if)#switchport mode trunk
+MLS-1(config-if)#exit
+
+MLS-1(config)#
+MLS-1(config)#interface range g1/0/4-6
+MLS-1(config-if-range)#channel-group 3 mode active
+MLS-1(config-if-range)#
+Creating a port-channel interface Port-channel 3
+
+MLS-1(config-if-range)#exit
+MLS-1(config)#interface port-channel 3
+MLS-1(config-if)#switchport mode trunk
+MLS-1(config-if)#exit
+MLS-1(config)#do show etherchannel
+---------------------------S-3------------------------
+S-3>enable
+S-3#configure terminal
+S-3(config)#interface range f0/1-3
+S-3(config-if-range)#channel-group 3 mode passive
+Creating a port-channel interface Port-channel 3
+
+S-3(config-if-range)#exit
+S-3(config)#interface port-channel 3
+S-3(config-if)#switchport mode trunk
+S-3(config-if)#exit
+
+S-3(config)#
+S-3(config)#interface range f0/4-6
+S-3(config-if-range)#channel-group 4 mode active
+Creating a port-channel interface Port-channel 4
+
+S-3(config-if-range)#exit
+S-3(config)#interface port-channel 4
+S-3(config-if)#switchport mode trunk
+S-3(config-if)#exit
+S-3(config)#do show etherchannel
+------------------------------S-4-----------------------
+S-4>enable
+S-4#configure terminal
+S-4(config)#interface range f0/1-3
+S-4(config-if-range)#channel-group 4 mode passive
+S-4(config-if-range)#
+Creating a port-channel interface Port-channel 4
+
+S-4(config-if-range)#exit
+S-4(config)#interface port-channel 4
+S-4(config-if)#switchport mode trunk
+S-4(config-if)#exit
+S-4(config)#do show etherchannel
+

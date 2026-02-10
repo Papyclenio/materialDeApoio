@@ -1,0 +1,66 @@
+Switch>enable
+Switch#conf t
+Switch(config)#hostname SWA-1
+SWA-1(config)#line console 0
+SWA-1(config-line)#password C1sc0
+SWA-1(config-line)#login
+SWA-1(config-line)#exit
+SWA-1(config)#enable password C1sc0
+SWA-1(config)#enable secret C1sc0
+SWA-1(config)#line vty 0 15
+SWA-1(config-line)#password C1sc0
+SWA-1(config-line)#login
+SWA-1(config-line)#exit
+SWA-1(config)#banner motd #Configurando Vlan no SWA-1#
+SWA-1(config)#service password-encryption
+SWA-1(config)#interface vlan 1
+SWA-1(config-if)#ip address 192.168.1.254 255.255.255.0
+SWA-1(config-if)#no shutdown
+
+SWA-1(config-if)#
+
+SWA-1(config-if)#exit
+SWA-1(config)#Vlan 10
+SWA-1(config-vlan)#name TI
+SWA-1(config-vlan)#exit
+SWA-1(config)#Vlan 20
+SWA-1(config-vlan)#name ADM
+SWA-1(config-vlan)#exit
+SWA-1(config)#Vlan 30
+SWA-1(config-vlan)#name RH
+SWA-1(config-vlan)#exit
+SWA-1(config)#exit
+SWA-1#
+SWA-1#show vlan brief
+SWA-1#conf t
+
+SWA-1(config)#interface range f0/1 - 2
+SWA-1(config-if-range)#switchport mode access
+SWA-1(config-if-range)#switchport access vlan 10
+SWA-1(config-if-range)#exit
+SWA-1(config)#interface range f0/10 - 11
+SWA-1(config-if-range)#switchport mode access
+SWA-1(config-if-range)#switchport access vlan 20
+SWA-1(config-if-range)#exit
+SWA-1(config)#interface range f0/20 - 21
+SWA-1(config-if-range)#switchport mode access
+SWA-1(config-if-range)#switchport access vlan 30
+SWA-1(config-if-range)#exit
+SWA-1(config)#exit
+SWA-1#
+
+SWA-1#show vlan brief
+
+SWA-1#copy running-config startup-config
+Destination filename [startup-config]? 
+Building configuration...
+[OK]
+SWA-1#copy running-config tftp
+Address or name of remote host []? 192.168.1.24
+Destination filename [SWA-1-confg]? 
+
+Writing running-config....!!
+[OK - 1538 bytes]
+
+1538 bytes copied in 3.014 secs (510 bytes/sec)
+SWA-1#

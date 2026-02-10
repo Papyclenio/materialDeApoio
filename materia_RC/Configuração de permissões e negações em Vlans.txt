@@ -1,0 +1,107 @@
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S-1
+S-1(config)#
+S-1(config)#vlan 10
+S-1(config-vlan)#name IT
+S-1(config-vlan)#exit
+S-1(config)#
+S-1(config)#vlan 20
+S-1(config-vlan)#name RH
+S-1(config-vlan)#exit
+S-1(config)#
+S-1(config)#vlan 30
+S-1(config-vlan)#name FIN
+S-1(config-vlan)#exit
+S-1(config)#
+S-1(config)#vlan 40
+S-1(config-vlan)#name HACKER1
+S-1(config-vlan)#exit
+S-1(config)#
+S-1(config)#vlan 50
+S-1(config-vlan)#name HACKER2
+S-1(config-vlan)#exit
+S-1(config)#do show vlan brief
+
+S-1(config)#interface range f0/3-8
+S-1(config-if-range)#switchport mode access
+S-1(config-if-range)#switchport access vlan 10
+S-1(config-if-range)#exit
+S-1(config)#
+S-1(config)#interface range f0/9-12
+S-1(config-if-range)#switchport mode access
+S-1(config-if-range)#switchport access vlan 20
+S-1(config-if-range)#exit
+S-1(config)#
+S-1(config)#interface range f0/13-16
+S-1(config-if-range)#switchport mode access
+S-1(config-if-range)#switchport access vlan 30
+S-1(config-if-range)#exit
+S-1(config)#
+S-1(config)#do show vlan brief
+
+S-1(config)#
+S-1(config)#interface range f0/1-2
+S-1(config-if-range)#switchport mode trunk
+
+S-1(config-if-range)#do show interface trunk
+
+-1(config-if-range)#switchport trunk allowed vlan except 50
+S-1(config-if-range)#
+S-1(config-if-range)#switchport trunk allowed vlan 10,20,30
+S-1(config-if-range)#
+S-1(config-if-range)#do show interface trunk
+
+S-1(config)#do wr
+
+
+Switch>enable
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#hostname S-2
+S-2(config)#vlan 10
+S-2(config-vlan)#name IT
+S-2(config-vlan)#exit
+S-2(config)#
+S-2(config)#vlan 20
+S-2(config-vlan)#name RH
+S-2(config-vlan)#exit
+S-2(config)#
+S-2(config)#vlan 30
+S-2(config-vlan)#name FIN
+S-2(config-vlan)#exit
+S-2(config)#
+S-2(config)#vlan 40
+S-2(config-vlan)#name HACKER1
+S-2(config-vlan)#exit
+S-2(config)#
+S-2(config)#vlan 50
+S-2(config-vlan)#name HACKER2
+S-2(config-vlan)#exit
+S-2(config)#
+S-2(config)#do show vlan brief
+S-2(config)#
+S-2(config)#interface range f0/3-8
+S-2(config-if-range)#switchport mode access
+S-2(config-if-range)#switchport access vlan 10
+S-2(config-if-range)#exit
+S-2(config)#
+S-2(config)#interface range f0/9-12
+S-2(config-if-range)#switchport mode access
+S-2(config-if-range)#switchport access vlan 20
+S-2(config-if-range)#exit
+S-2(config)#
+S-2(config)#interface range f0/13-16
+S-2(config-if-range)#switchport mode access
+S-2(config-if-range)#switchport access vlan 30
+S-2(config-if-range)#exit
+S-2(config)#
+S-2(config)#do show vlan brief
+
+S-2(config)#interface range f0/1-2
+S-2(config-if-range)#switchport mode trunk
+
+S-2(config-if-range)#do show interface trunk
+
+S-2(config)#do wr

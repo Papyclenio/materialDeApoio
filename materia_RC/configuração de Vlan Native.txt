@@ -1,0 +1,29 @@
+Switch>enable 
+Switch#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#vlan 10
+Switch(config-vlan)#name IT
+Switch(config-vlan)#exit
+Switch(config)#
+Switch(config)#vlan 20
+Switch(config-vlan)#name RH
+Switch(config-vlan)#exit
+Switch(config)#
+Switch(config)#vlan 99
+Switch(config-vlan)#name Native
+Switch(config-vlan)#exit
+Switch(config)#
+Switch(config)#do show vlan 
+
+Switch(config)#interface range f0/1-2
+Switch(config-if-range)#switchport mode trunk
+Switch(config-if-range)#exit
+Switch(config)#
+Switch(config)#do show interface trunk
+
+Switch(config)#interface range f0/1-2
+Switch(config-if-range)#switchport trunk native vlan 99
+
+Switch(config-if-range)#exit
+Switch(config)#
+Switch(config)#do show interface trunk
